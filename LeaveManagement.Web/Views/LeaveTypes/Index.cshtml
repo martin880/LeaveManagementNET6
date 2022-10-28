@@ -1,0 +1,71 @@
+﻿@model IEnumerable<LeaveTypeVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-sm btn-success" asp-action="Create"><i class="fa-solid fa-plus"></i> Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DefaultDays)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DefaultDays)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning"><i class="fa-regular fa-pen-to-square"></i></a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-secondary"><i class="fa-solid fa-circle-info"></i></a>
+                    @*<a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete</a>*@
+                    <button data-id="@item.Id" class="btn btn-sm btn-danger deleteBtn" type="button"><i class="fa-solid fa-trash"></i></button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<form id="deleteForm" asp-action="Delete">
+    <input type ="hidden" id="leaveTypeId" name="Id" />
+</form>
+
+@section Scripts {
+    <script>
+        $(function(){
+            $('.table').DataTable();
+
+            $('.deleteBtn').click(function(e){
+                swal({
+                    title: "Are you sure?",
+                    text: "Are you sure want to delete this record?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true
+                }).then((confirm) => {
+                    if(confirm){
+                        var btn = $(this);
+                        var id = btn.data("id");
+                        $('#leaveTypeId').val(id);
+                        $('#deleteForm').submit();
+                    }
+                });
+            });
+        });
+    </script>
+}
