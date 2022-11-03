@@ -45,19 +45,19 @@
        @foreach(var allocation in Model.LeaveAllocations)
        {
            <li class="list-group-item">
-                <h6>@allocation.LeaveType.Name 
+                <h6>@allocation.LeaveType.Name
                     <button type="button" class="btn btn-primary">
                         Allocated Days <span class="badge text-bg-secondary">@allocation.LeaveType.DefaultDays</span>
                     </button>
                     <button type="button" class="btn btn-primary">
                         Remaining Days <span class="badge text-bg-secondary">@allocation.NumberOfDays</span>
                     </button>
-                 </h6>
+                <a class="btn btn-warning" asp-action="EditAllocation" asp-route-id="@allocation.Id"><i class="fa-regular fa-pen-to-square"></i> Edit Allocation</a>
+                </h6>
             </li>
        }
     </ul>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
