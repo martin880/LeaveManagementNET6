@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" />
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/font-awesome/css/fontawesome.css" asp-append-version="true" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/LeaveManagement.Web.styles.css" asp-append-version="true" />
 </head>
@@ -30,7 +31,7 @@
                             <a class="nav-link text-white fs-6" asp-area="" asp-controller="LeaveRequests" asp-action="Create">Apply For Leave</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white fs-6" asp-area="" asp-controller="" asp-action="">My Leave</a>
+                            <a class="nav-link text-white fs-6" asp-area="" asp-controller="LeaveRequests" asp-action="MyLeave">My Leave</a>
                         </li>
                         
                         @if (User.IsInRole("Administrator"))
@@ -44,9 +45,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item fs-6" asp-controller="LeaveTypes" asp-action="Index">Leave Type</a></li>
-                                    <li><a class="dropdown-item fs-6" href="#">Leave Allocation</a></li>
-                                    <li><a class="dropdown-item fs-6" href="#">Leave Request</a></li>
-                                    <li><a class="dropdown-item fs-6" href="#">Employee Management</a></li>
+                                    <li><a class="dropdown-item fs-6" asp-controller="LeaveRequests" asp-action="Index">Leave Request</a></li>
                                 </ul>
                             </li>
                         }
@@ -65,7 +64,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - Leave Management Web - NET 6 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2022 Created by Martin Lumbangaol - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -74,9 +73,13 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
         $(function(){
             $('.table').DataTable();
+            $(".datepicker").datepicker({
+                dateFormat: "yy-mm-dd"
+            });
         });
     </script>
     <script src="~/js/site.js" asp-append-version="true"></script>

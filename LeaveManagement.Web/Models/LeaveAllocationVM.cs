@@ -9,7 +9,7 @@ namespace LeaveManagement.Web.Models
 
         [Display(Name = "Number of days")]
         [Required]
-        [Range(1, 50)]
+        [Range(1, 50, ErrorMessage = "Invalid Number Entered")]
         public int NumberOfDays { get; set; }
 
         [Required]
