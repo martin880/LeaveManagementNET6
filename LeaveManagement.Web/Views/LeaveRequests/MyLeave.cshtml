@@ -14,7 +14,7 @@
                 <div class="col">Leave Name</div>
                 <div class="col">Original Allocation</div>
                 <div class="col">Current Allocation</div>
-                <div class="col">Action</div>
+                @*<div class="col">Action</div>*@
             </div>
         </li>
         @foreach (var allocation in Model.LeaveAllocations)
@@ -99,7 +99,13 @@
                 </td>
              
                 <td>
-                    <a asp-action="Cancel" class="btn btn-sm btn-danger" asp-route-id="@item.Id">Cancel Request</a>
+                        @if (item.Approved == null)
+                        {
+                            <form>
+                                <input asp-form="@item.Id" type="hidden" />
+                                <button type="submit" class="btn btn-sm btn-danger">Cancel Request</button>
+                            </form>
+                        }     
                 </td>
             </tr>
         }

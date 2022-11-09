@@ -34,6 +34,16 @@
                             <a class="nav-link text-white fs-6" asp-area="" asp-controller="LeaveRequests" asp-action="MyLeave">My Leave</a>
                         </li>
                         
+                        @if (User.IsInRole(Roles.User))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="LeaveRequests" asp-action="Create">Apply For Leaves</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="LeaveRequests" asp-action="MyLeave">My Leave</a>
+                            </li>
+                        }
+
                         @if (User.IsInRole("Administrator"))
                         {
                             <li class="nav-item">
