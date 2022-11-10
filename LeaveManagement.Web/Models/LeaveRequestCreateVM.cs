@@ -22,7 +22,7 @@ namespace LeaveManagement.Web.Models
         public int LeaveTypeId { get; set; }
         public SelectList LeaveTypes { get; set; }
 
-        [Display(Name = "Request Comment ")]
+        [Display(Name = "Request Comments")]
         public string RequestComments { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
