@@ -9,19 +9,19 @@
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                <div class="card shadow-2-strong bg-light text-dark" style="border-radius: 1rem;">
                     <div class="card-body p-5 text-center">
                     <h3 class="mb-5">@ViewData["Title"]</h3>
 
                     <form id="account" method="post">
                           <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-outline mb-2">
-                                <input asp-for="Input.Email" id="typeEmailX-2" class="form-control form-control-lg" />
+                                <input asp-for="Input.Email" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Email" />
                                 <label class="form-label" for="typeEmailX-2"></label>
                                 <span asp-validation-for="Input.Email" class="text-danger"></span>
                             </div>
                             <div class="form-outline mb-2">
-                                <input asp-for="Input.Password" id="typePasswordX-2" class="form-control form-control-lg" />
+                                <input asp-for="Input.Password" id="typePasswordX-2" class="form-control form-control-lg" placeholder="Password" />
                                 <label class="form-label" for="typePasswordX-2"></label>
                                 <span asp-validation-for="Input.Password" class="text-danger"></span>
                             </div>
@@ -34,7 +34,7 @@
                                 </div>
                             </div>
                             <div>
-                                <button id="login-submit" type="submit" class="w-50 btn btn-sm btn-primary btn-block">Log in</button>
+                                <button id="login-submit" type="submit" class="w-50 btn btn-sm btn-primary btn-block mb-2">Log in</button>
                             </div>
                             <div>
                                 <p>
