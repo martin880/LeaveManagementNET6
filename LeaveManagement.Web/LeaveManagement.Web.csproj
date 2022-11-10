@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-LeaveManagement.Web-DC764F60-E5AF-44DA-9C6C-C43D9C1F0E18</UserSecretsId>
   </PropertyGroup>
