@@ -14,7 +14,6 @@
                 <div class="col">Leave Name</div>
                 <div class="col">Original Allocation</div>
                 <div class="col">Current Allocation</div>
-                @*<div class="col">Action</div>*@
             </div>
         </li>
         @foreach (var allocation in Model.LeaveAllocations)
@@ -23,12 +22,12 @@
                 <div class="row">
                     <div class="col"><h6>@allocation.LeaveType.Name</h6></div>
                     <div class="col">
-                        <button type="button" class="btn btn-primary">
+                        <button type="button" class="btn btn-primary myLeaveBtn">
                             Allocated Days <span class="badge text-bg-secondary">@allocation.LeaveType.DefaultDays</span>
                         </button>
                     </div>
                     <div class="col">
-                        <button type="button" class="btn btn-primary">
+                        <button type="button" class="btn btn-primary myLeaveBtn">
                             Remaining Days <span class="badge text-bg-secondary">@allocation.NumberOfDays</span>
                         </button>
                     </div>
