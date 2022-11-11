@@ -14,13 +14,17 @@ namespace LeaveManagement.Web.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly ILeaveRequestRepository leaveRequestRepository;
+        private readonly ILeaveTypeRepository leaveTypeRepository;
+        private readonly ILogger<LeaveRequestsController> logger;
 
-        public LeaveRequestsController(ApplicationDbContext context,ILeaveRequestRepository leaveRequestRepository)
+        public LeaveRequestsController(ApplicationDbContext context,ILeaveRequestRepository leaveRequestRepository, ILeaveTypeRepository leaveTypeRepository,
+            ILogger<LeaveRequestsController>logger)
         {
-            _context = context;
             this.leaveRequestRepository = leaveRequestRepository;
+            this.leaveTypeRepository = leaveTypeRepository;
+            this.logger = logger;
         }
-
+        
         [Authorize(Roles = Roles.Administrator)]
         // GET: LeaveRequests
         public async Task<IActionResult> Index()
@@ -56,7 +60,7 @@ namespace LeaveManagement.Web.Controllers
             }
             catch (Exception ex)
             {
-
+                logger.LogError(ex, "Error Approving Request");
                 throw;
             }
 
@@ -73,18 +77,18 @@ namespace LeaveManagement.Web.Controllers
             }
             catch (Exception ex)
             {
-
+                logger.LogError(ex, "Error Cancelling Leave Request");
                 throw;
             }
             return RedirectToAction(nameof(MyLeave));
         }
 
         // GET: LeaveRequests/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             var model = new LeaveRequestCreateVM
             {
-                LeaveTypes = new SelectList(_context.LeaveTypes, "Id", "Name")
+                LeaveTypes = new SelectList(await leaveTypeRepository.GetAllAsync(), "Id", "Name")
             };
             return View(model);
         }
@@ -110,10 +114,11 @@ namespace LeaveManagement.Web.Controllers
             }
             catch (Exception ex)
             {
+                logger.LogError(ex, "Error Creating Leave Request");
                 ModelState.AddModelError(string.Empty, "An Error Has Occurred. Please Try Again Later");
             }
             
-            model.LeaveTypes = new SelectList(_context.LeaveTypes, "Id", "Name", model.LeaveTypeId);
+            model.LeaveTypes = new SelectList(await leaveTypeRepository.GetAllAsync(), "Id", "Name", model.LeaveTypeId);
             return View(model);
         }
 
